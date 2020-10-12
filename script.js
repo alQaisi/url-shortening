@@ -39,7 +39,6 @@ const shortUrl=async(url)=>{
 form.addEventListener("submit",async (event) => {
     loader.style.visibility="visible";
         event.preventDefault();
-        console.log(event.srcElement[0].value);
          const {hashid}=await shortUrl(event.srcElement[0].value);
          const newUrl="https://rel.ink/"+hashid;
         loader.style.visibility="hidden";
