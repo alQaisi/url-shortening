@@ -3,9 +3,7 @@ const menuIcon=document.getElementById("menuIcon");
 const submit=document.getElementById("submit");
 const form=document.getElementById("form");
 const loader=document.getElementById('loader');
-const expression = /(https)?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/g;
-const regex = new RegExp(expression);
-let url="";
+const urlValue=document.getElementById('urlValue');
 menuIcon.addEventListener("click",()=>{
     if(menuIcon.classList.contains("change")){
         menu.style.opacity="0";
@@ -42,5 +40,5 @@ form.addEventListener("submit",async (event) => {
          const {hashid}=await shortUrl(event.srcElement[0].value);
          const newUrl="https://rel.ink/"+hashid;
         loader.style.visibility="hidden";
-        alert("the new url is: "+newUrl);
-})
+        urlValue.value=newUrl;
+});
