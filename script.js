@@ -25,20 +25,19 @@ window.addEventListener("resize",function(event){
     }
 });
 const shortUrl=async(url)=>{
-    return fetch('https://rel.ink/api/links/',{
+    return fetch(`https://api.shrtco.de/v2/shorten?url=${url}`,{
         method:'POST',
-        body:JSON.stringify({url}),
-        headers: {
-        "Content-type": "application/json"
-        }
     }).then(res=>res.json())
-    .catch(err=>alert("try again later"));
+    .catch(err=>{
+        loader.style.visibility="hidden";
+        alert("try again later")
+    });
 }
 form.addEventListener("submit",async (event) => {
     loader.style.visibility="visible";
         event.preventDefault();
-         const {hashid}=await shortUrl(event.srcElement[0].value);
-         const newUrl="https://rel.ink/"+hashid;
+         const {result}=await shortUrl(event.srcElement[0].value);
+         const newUrl=result.short_link;
         loader.style.visibility="hidden";
         urlValue.value=newUrl;
 });
